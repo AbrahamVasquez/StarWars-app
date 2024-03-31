@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, useLocation, HashRouter } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -10,23 +10,17 @@ import { auth } from './firebase';
 import Vehicles from './components/Vehicles';
 import { Layout } from './components/Layout';
 import { FavoritesList } from './components/FavoritesList';
-// import Sidebar from './components/Sidebar'; 
 
 const App = () => {
   const userAuthenticated = () => {
     return auth.currentUser !== null;
   };
 
-  // const location = useLocation();
-  // const showNavbar = !['/login', '/register'].includes(location.pathname);
-
   return (
-    <HashRouter>
-    
-     <Layout>
-      <Routes>
-        <Route path="/" element={userAuthenticated() ? <Navigate to="/home" /> : null}>
-            <Route index element={<Home />} />
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={userAuthenticated() ? <Navigate to="/home" /> : <Navigate to="/login" />}>
             <Route path="home" element={<Home />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
@@ -36,10 +30,10 @@ const App = () => {
             <Route path="films" element={<Films />} />
             <Route path="starships" element={<Vehicles />} />
             <Route path="favorites" element={<FavoritesList />} />
-        </Route>
-      </Routes>
+          </Route>
+        </Routes>
       </Layout>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
