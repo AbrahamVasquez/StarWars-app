@@ -1,7 +1,6 @@
 <<<<<<< HEAD
 # StarWars-app
 An app about Star Wars created for Kodigo, providing information about the main characters of its saga.
-See live at: https://starwars-app-kodigo.netlify.app/register
 =======
 # React + Vite
 
