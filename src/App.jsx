@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation, HashRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -21,7 +21,7 @@ const App = () => {
   // const showNavbar = !['/login', '/register'].includes(location.pathname);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
     
      <Layout>
       <Routes>
@@ -39,7 +39,7 @@ const App = () => {
         </Route>
       </Routes>
       </Layout>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
