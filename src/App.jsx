@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import React from 'react';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -20,17 +21,20 @@ const App = () => {
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="/" element={userAuthenticated() ? <Navigate to="/home" /> : <Navigate to="/login" />}>
-            <Route path="home" element={<Home />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="characters" element={<Characters />} />
-            <Route path="planets" element={<Planets />} />
-            <Route path="films" element={<Films />} />
-            <Route path="starships" element={<Vehicles />} />
-            <Route path="favorites" element={<FavoritesList />} />
-          </Route>
+          {/* Redirect to Home if authenticated, otherwise redirect to Login */}
+          <Route
+            path="/"
+            element={userAuthenticated() ? <Navigate to="/login" /> : <Navigate to="/home" />}
+          />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/characters" element={<Characters />} />
+          <Route path="/planets" element={<Planets />} />
+          <Route path="/films" element={<Films />} />
+          <Route path="/starships" element={<Vehicles />} />
+          <Route path="/favorites" element={<FavoritesList />} />
         </Routes>
       </Layout>
     </BrowserRouter>

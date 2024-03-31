@@ -1,26 +1,29 @@
 import { useEffect, useState } from 'react';
 import Logo from "../img/logo.png";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import "../styles/style.css";
 import { doc, getDoc } from 'firebase/firestore';
-import { db, auth } from '../firebase'; 
+import { auth, db } from '../firebase'; 
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
 
 export const Login = () => {
   const [err, setErr] = useState(false);
   const [userPhoto, setUserPhoto] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        getUserPhoto(user.uid); // Get profile picture when user is logged in
+      if (user && location.pathname !== '/login') {
+        getUserPhoto(user.uid); // Get profile picture when user is logged in and not on the login page
       } else {
-        setUserPhoto(null); // Resetear profile picture when user logs out
+        setUserPhoto(null); // Reset profile picture when user logs out or on the login page
       }
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [location]);
 
   const getUserPhoto = async (userId) => {
     try {
@@ -53,7 +56,7 @@ export const Login = () => {
 
     try {
       // Sign in with Firebase authentication
-      await auth.signInWithEmailAndPassword;
+      await signInWithEmailAndPassword( auth, email, password);
       setErr(false);
       navigate("/");
     } catch (error) {
@@ -68,10 +71,10 @@ export const Login = () => {
       <span className="title mb-4 text-center">Continue your adventure by logging in</span>
       <form onSubmit={handleSubmit} className='p-4'>
         <div className='mb-3'>
-          <input type="email" placeholder="Email" className='rounded-4 p-1 border-0'/>
+          <input type="email" name="email" placeholder="Email" className='rounded-4 p-1 border-0'/>
         </div>
         <div className='mb-3'>
-          <input type="password" placeholder="Password" className='rounded-4 p-1 border-0'/>
+          <input type="password" name="password" placeholder="Password" className='rounded-4 p-1 border-0'/>
         </div>
         <button type="submit" className="btn bg-warning rounded-4 w-100 mt-1 text-black">Log in</button>
         {err && <span className="text-danger">Incorrect username or password. 🚫</span>}

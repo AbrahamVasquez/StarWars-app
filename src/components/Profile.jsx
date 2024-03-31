@@ -9,7 +9,6 @@ export const Profile = ({logoutBtn}) => {
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log('User logged in:', user);
         setUserDisplayName(user.displayName || '');
         setUserPhotoURL(user.photoURL || ''); 
       } else {
