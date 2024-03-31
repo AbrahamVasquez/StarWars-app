@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Geostar+Fill&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url(../img/login.jpg);
+  margin: 0;
+}
+
+.card {
+  background-image: url(../img/login.jpg);
+}
+
+.card img {
+  width: auto;
+  height: 400px;
+  transition: all 0.1s;
+}
+
+img:hover  {
+  transform: scale(1.1);
+}
+
+
+img {
+  width: 150px;
+  margin-right: 5px;
+}
+
+.login-register {
+  /* background-image: url('../img/login.jpg'); */
+  background-position: center;
+  font-family: "Geostar Fill", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  color: white;
+  /* opacity: 0.9; */
+}
+
+/* Transisition to hover items in navbar */
+.navbar-nav .nav-item {
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-item:hover {
+  transform: translateY(-5px);
+  background-color: rgb(11, 11, 11);
+}
+
+.navbar-nav .btn {
+  background-color: rgb(255, 0, 0);
+  color: white;
+  padding: 8px;
+  font-size: 30px;
+}
+
+ li {
+  list-style: none;
+  font-size: 20px;
+}
+
+/* .navbar {
+  background-color: rgb(39, 39, 206);
+}
+
+.home-container {
+  background-color: green;
+} */
